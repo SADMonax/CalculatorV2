@@ -39,7 +39,7 @@ namespace CalculatorV2
                     Console.WriteLine("Enter second opperand:");
                     double getop2 = converter.GetDouble();
 
-                    if(getop1 == 0 & getop2 == 0)
+                    if (getop1 == 0 & getop2 == 0)
                     {
                         Console.WriteLine("Incorrect Symbols, reset programm!");
                         continue;
@@ -110,17 +110,19 @@ namespace CalculatorV2
     {
         public double GetDouble()
         {
-        anotherTry:
-            try
+            for (; ; )
             {
-                
-                double dDouble = Convert.ToDouble(Console.ReadLine());
-                return dDouble;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Input string was not in a correct format, try again!");
-                goto anotherTry;
+                try
+                {
+
+                    double dDouble = Convert.ToDouble(Console.ReadLine());
+                    return dDouble;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Input string was not in a correct format, try again!");
+                    continue;
+                }
             }
         }
     }
