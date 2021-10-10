@@ -10,7 +10,7 @@ namespace CalculatorV2
 
             bool answer = true;
             int opNum;
-        start:
+
             for (; answer == true;)
             {
 
@@ -23,13 +23,13 @@ namespace CalculatorV2
                     }
                     catch (FormatException)
                     {
-                        goto start;
+                        continue;
                     }
 
                     if (opNum < 1 || opNum > 4)
                     {
                         Console.WriteLine("Incorrect Symbol, reset programm!");
-                        goto start;
+                        continue;
                     }
                     Converter converter = new Converter();
 
@@ -42,7 +42,7 @@ namespace CalculatorV2
                     if(getop1 == 0 & getop2 == 0)
                     {
                         Console.WriteLine("Incorrect Symbols, reset programm!");
-                        goto start;
+                        continue;
                     }
                     Calc calc = new Calc();
 
@@ -60,9 +60,6 @@ namespace CalculatorV2
                         case 4:
                             Console.WriteLine($"{getop1} / {getop2} = " + calc.GetDiv(getop1, getop2));
                             break;
-                        default:
-                            Console.WriteLine("Unknown Symbol, programm reset!");
-                            goto start;
                     }
 
                     Console.WriteLine("Need another operation? y/n ");
