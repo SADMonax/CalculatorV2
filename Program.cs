@@ -8,16 +8,10 @@ namespace CalculatorV2
         {
             Console.WriteLine("Calculator V2");
 
-            start:
             Console.WriteLine("Enter Opperation code: ");
             Console.WriteLine("For [+] enter 1 ; For [-] enter 2 ; For [*] enter 3 ; For [/] enter 4");
 
             int opNum = Convert.ToInt32(Console.ReadLine());
-
-            if(opNum <= 0 && opNum > 4)
-            {
-                goto start;
-            }
 
             double getop1 = Convert.ToDouble(Console.ReadLine());
 
@@ -38,7 +32,7 @@ namespace CalculatorV2
                     break;
                 case 4:
                     Console.WriteLine($"{getop1} / {getop2} = " + calc.GetDiv(getop1, getop2));
-                    goto start;
+                    break;
                 default:
                     Console.WriteLine("Unknown Symbol");
                     break;
