@@ -9,6 +9,7 @@ namespace CalculatorV2
             Console.WriteLine("Calculator V2");
 
             bool answer = true;
+            int opNum;
         start:
             for (; answer == true;)
             {
@@ -16,8 +17,15 @@ namespace CalculatorV2
                 {
                     Console.WriteLine("Enter Opperation code: ");
                     Console.WriteLine("For [+] enter 1 ; For [-] enter 2 ; For [*] enter 3 ; For [/] enter 4");
+                    try
+                    {
+                        opNum = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (FormatException)
+                    {
+                        goto start;
+                    }
 
-                    int opNum = Convert.ToInt32(Console.ReadLine());
                     if (opNum < 1 || opNum > 4)
                     {
                         Console.WriteLine("Incorrect Symbol, reset programm!");
@@ -31,6 +39,11 @@ namespace CalculatorV2
                     Console.WriteLine("Enter second opperand:");
                     double getop2 = converter.GetDouble();
 
+                    if(getop1 == 0 & getop2 == 0)
+                    {
+                        Console.WriteLine("Incorrect Symbols, reset programm!");
+                        goto start;
+                    }
                     Calc calc = new Calc();
 
                     switch (opNum)
@@ -48,8 +61,8 @@ namespace CalculatorV2
                             Console.WriteLine($"{getop1} / {getop2} = " + calc.GetDiv(getop1, getop2));
                             break;
                         default:
-                            Console.WriteLine("Unknown Symbol");
-                            break;
+                            Console.WriteLine("Unknown Symbol, programm reset!");
+                            goto start;
                     }
 
                     Console.WriteLine("Need another operation? y/n ");
@@ -100,8 +113,18 @@ namespace CalculatorV2
     {
         public double GetDouble()
         {
-            double dDouble = Convert.ToDouble(Console.ReadLine());
-            return dDouble;
+        anotherTry:
+            try
+            {
+                
+                double dDouble = Convert.ToDouble(Console.ReadLine());
+                return dDouble;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Input string was not in a correct format, try again!");
+                goto anotherTry;
+            }
         }
     }
 }
